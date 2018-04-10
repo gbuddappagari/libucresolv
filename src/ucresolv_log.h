@@ -42,6 +42,6 @@ void register_ucresolv_logger (logger_func_t logger_func_p);
 
 #define ucresolv_error(...) ucresolv_log (LEVEL_ERROR, __VA_ARGS__)
 #define ucresolv_info(...) ucresolv_log (LEVEL_INFO, __VA_ARGS__)
-#define ucresolv_debug(...) ucresolv_log (LEVEL_DEBUG, __VA_ARGS__)
+#define ucresolv_debug(...) ucresolv_log (LEVEL_INFO, __VA_ARGS__)
 
 #endif
