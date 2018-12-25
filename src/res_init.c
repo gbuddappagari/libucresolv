@@ -529,6 +529,7 @@ __res_iclose(res_state statp, bool free_addr) {
 	int ns;
 
 	if (statp->_vcsock >= 0) {
+		shutdown (statp->_vcsock, SHUT_RDWR);
 		/*close_not_cancel_no_status*/ close(statp->_vcsock);
 		statp->_vcsock = -1;
 		statp->_flags &= ~(RES_F_VC | RES_F_CONN);
@@ -536,6 +537,7 @@ __res_iclose(res_state statp, bool free_addr) {
 	for (ns = 0; ns < statp->nscount; ns++)
 		if (statp->_u._ext.nsaddrs[ns]) {
 			if (statp->_u._ext.nssocks[ns] != -1) {
+				shutdown (statp->_u._ext.nssocks[ns], SHUT_RDWR);
 				/*close_not_cancel_no_status*/ close(statp->_u._ext.nssocks[ns]);
 				statp->_u._ext.nssocks[ns] = -1;
 			}
